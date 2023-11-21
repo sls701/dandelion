@@ -10,12 +10,12 @@ import { useCallback } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-import Onboarding from './components/Onboarding';
-import ChooseCountries from './components/ChooseCountries';
-import CreateAccount from './components/CreateAccount';
-import InitializeProfile from './components/InitializeProfile';
-import FinishSignup from './components/FinishSignup';
-import SignIn from './components/SignIn';
+import Onboarding from './components/auth/1Onboarding';
+import ChooseCountries from './components/auth/3ChooseCountries';
+import CreateAccount from './components/auth/2CreateAccount';
+import InitializeProfile from './components/auth/4InitializeProfile';
+import FinishSignup from './components/auth/5FinishSignup';
+import SignIn from './components/auth/SignIn';
 
 import HomeScreen from './components/HomeScreen';
 import DiscoverScreen from './components/DiscoverScreen';
@@ -24,6 +24,9 @@ import ProfileScreen from './components/ProfileScreen';
 import TabBar from './components/TabBar';
 
 import {Icon} from 'react-native-eva-icons';
+
+import './config/firebase';
+import RootNavigation from './navigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -67,16 +70,6 @@ function HomeTabs() {
   );
 }
 
-const Drawer = createDrawerNavigator();
-
-function HomeScreenDrawer() {
-  return (
-    <Drawer.Navigator>
-      
-    </Drawer.Navigator>
-  );
-};
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -100,17 +93,18 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider>
-        <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="HomeTabs" component={HomeTabs} />
+        <Stack.Navigator initialRouteName="Landing" screenOptions={{headerShown:false}}>
           <Stack.Screen name="Onboarding" component={Onboarding}/>
           <Stack.Screen name="ChooseCountries" component={ChooseCountries}/>
           <Stack.Screen name="CreateAccount" component={CreateAccount}/>
           <Stack.Screen name="InitializeProfile" component={InitializeProfile}/>
           <Stack.Screen name="FinishSignup" component={FinishSignup}/>
           <Stack.Screen name="SignIn" component={SignIn}/>
+          <Stack.Screen name="HomeTabs" component={HomeTabs} />
         </Stack.Navigator>
       </SafeAreaProvider>
      </NavigationContainer>
+     // <RootNavigation />
   );
 }
 

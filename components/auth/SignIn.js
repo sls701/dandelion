@@ -1,17 +1,17 @@
 import React, {useState, useCallback} from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import CircleBackButton from '../components/CircleBackButton';
-import Button from '../components/Button';
-import ToggleVisibility from '../hooks/ToggleVisibility';
-import Eye from '../assets/svgs/Eye';
-import CustomCheckbox from '../components/CustomCheckbox';
-import OrDivider from '../assets/svgs/OrDivider';
+import CircleBackButton from '../CircleBackButton';
+import Button from '../Button';
+import ToggleVisibility from '../../hooks/ToggleVisibility';
+import Eye from '../../assets/svgs/Eye';
+import CustomCheckbox from '../CustomCheckbox';
+import OrDivider from '../../assets/svgs/OrDivider';
 
 export default SignIn = ({navigation}) => {
-    const { passwordVisibility, iconShown, handlePasswordVisibility } = ToggleVisibility();
     const [password, setPassword] = useState('');
     const [checked, setChecked] = useState(false);
+    const { passwordVisibility, iconShown, handlePasswordVisibility } = ToggleVisibility();
     
     return(
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>

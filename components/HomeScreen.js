@@ -3,9 +3,19 @@ import { StyleSheet, Text, View, Pressable, TouchableWithoutFeedback, Touchable,
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {Icon} from 'react-native-eva-icons';
 import DandelionText from '../assets/svgs/DandelionText';
+import Firebase from '../config/firebase';
+//import { AuthenticatedUserContext } from '../navigation/AuthenticatedUserProvider';
 
 export default HomeScreen = ({navigation}) => {
     const width = useWindowDimensions().width;
+    const { user } = useContext(AuthenticatedUserContext);
+    const handleSignOut = async () => {
+        try {
+        await auth.signOut();
+        } catch (error) {
+        console.log(error);
+        }
+    };
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView bounces={false}>
@@ -14,6 +24,8 @@ export default HomeScreen = ({navigation}) => {
                     <DandelionText />
                     <Icon name='paper-plane-outline' height={34} width={34} fill='#EBA900' />
                 </View>
+                <Text>Welcome {user.email}!</Text>
+                <Text>Your UID is: {user.uid}</Text>
             </ScrollView>
             <StatusBar style="auto" />
         </SafeAreaView>
@@ -34,5 +46,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
     }
 });
-
-// <Image source={require('../assets/images/HomeScreen.png')} resizeMode='contain' style={{width: width, marginTop: -70}}/>

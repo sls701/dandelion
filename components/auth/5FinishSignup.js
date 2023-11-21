@@ -2,11 +2,11 @@ import React, {useState, useCallback} from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CircleBackButton from '../components/CircleBackButton';
-import Button from '../components/Button';
+import CircleBackButton from '../CircleBackButton';
+import Button from '../Button';
 import DropDownPicker from 'react-native-dropdown-picker';
-import LogoText from '../assets/svgs/LogoText';
-import CustomCheckbox from '../components/CustomCheckbox';
+import LogoText from '../../assets/svgs/LogoText';
+import CustomCheckbox from '../CustomCheckbox';
 
 export default FinishSignup = ({navigation}) => {
     const [checked, setChecked] = useState(false);

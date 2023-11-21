@@ -2,29 +2,29 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, Text, View, FlatList, Animated, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import OnboardingItem from '../components/OnboardingItem';
-import Paginator from '../components/Paginator';
-import Button from '../components/Button';
+import OnboardingItem from './OnboardingItem';
+import Paginator from '../Paginator';
+import Button from '../Button';
 
 const slides = 
 [
     {
         id: '1',
         title: 'Welcome to Dandelion!',
-        description: 'You\'re one step closer to joining a community where you truly belong.',
-        image: require('../assets/images/onboarding-logo.png'),
+        description: 'You\'re one step closer to joining a community made for immigrants.',
+        image: require('../../assets/images/onboarding-logo.png'),
     },
     {
         id: '2',
         title: 'Join a Welcoming\nCommunity',
-        description: 'Connect with immigrants who share the same heritage as you.',
-        image: require('../assets/images/onboarding-logo.png'),
+        description: 'Connect with others over your shared heritage.',
+        image: require('../../assets/images/onboarding-logo.png'),
     },
     {
         id: '3',
         title: 'Share Your Experiences',
         description: 'Keep it personal with direct messages or reach out to local community members.',
-        image: require('../assets/images/onboarding-logo.png'),
+        image: require('../../assets/images/onboarding-logo.png'),
     },
 ];
 
@@ -58,7 +58,7 @@ export default Onboarding = ({navigation}) => {
                 />
             </View>
             <Paginator data={slides} scrollX={scrollX}/>
-            <Button title='Get Started' position={{marginBottom: 40}} onPress={() => navigation.navigate('ChooseCountries')}/>
+            <Button title='Get Started' position={{marginBottom: 40}} onPress={() => navigation.navigate('CreateAccount')}/>
             <StatusBar style="auto" />
         </SafeAreaView > 
     );

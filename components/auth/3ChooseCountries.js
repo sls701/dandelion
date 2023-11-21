@@ -3,23 +3,29 @@ import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard } from 'reac
 import { StatusBar } from 'expo-status-bar';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import CircleBackButton from '../components/CircleBackButton';
-import SeedPath from '../assets/svgs/SeedPath';
+import CircleBackButton from '../CircleBackButton';
+import SeedPath from '../../assets/svgs/SeedPath';
 import { allCountries } from 'country-region-data';
 
 export default Signup = ({navigation}) => {
-    
-    // list of countries
+
+    // list of countries that users are from
+    const pastCountries = ['']
+
+    // list of countries that users live in now
+    const currentCountries = ['United States'];
+
+    /*
     const countryArray = Object.entries(allCountries)
-    const countries = [];
     for (country of countryArray) {
         countries.push({label: country[1][0], value: country[1][0]});
     }
+    */
     
     // changes state of dropdown for country that the user is from
     const [openFrom, setOpenFrom] = useState(false);
     const [valueFrom, setValueFrom] = useState(null);
-    const [itemsFrom, setItemsFrom] = useState(countries);
+    const [itemsFrom, setItemsFrom] = useState(pastCountries);
     const onOpenFrom = useCallback(() => {
         setOpenCurrent(false);
     }, []);
@@ -27,7 +33,7 @@ export default Signup = ({navigation}) => {
     // changes state of dropdown for country that the user currently lives in
     const [openCurrent, setOpenCurrent] = useState(false);
     const [valueCurrent, setValueCurrent] = useState(null);
-    const [itemsCurrent, setItemsCurrent] = useState(countries);
+    const [itemsCurrent, setItemsCurrent] = useState(currentCountries);
     const onOpenCurrent = useCallback(() => {
         setOpenFrom(false);
     }, []);
@@ -39,8 +45,7 @@ export default Signup = ({navigation}) => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
             <SafeAreaView style={styles.container}>
                 <SeedPath style={{position: 'absolute', top: 0, right: -10}}/>
-                <CircleBackButton position={{marginTop: 140}}onPress={() => navigation.navigate('Onboarding')}/>
-                <Text style={styles.title}>Ready to {'\n'}connect?</Text>
+                <Text style={[styles.title]}>Ready to {'\n'}connect?</Text>
                 <Text style={styles.label}>What country are you from?</Text>
                     <DropDownPicker
                         open={openFrom}
@@ -124,7 +129,7 @@ export default Signup = ({navigation}) => {
                         }}
                         activityIndicatorColor="#ECB115"
                     />
-                <Button title='Next' position={{marginBottom: 16, alignSelf: 'center'}} onPress={() => navigation.navigate('CreateAccount')}/>
+                <Button title='Next' position={{marginBottom: 16, alignSelf: 'center'}} onPress={() => navigation.navigate('InitializeProfile')}/>
                 <Text style={styles.smallText}>Already have an account? <Text style={{color: '#FFBC05'}} onPress={() => navigation.navigate('SignIn')}>Sign in here.</Text></Text>
                 <StatusBar style="auto" />
             </SafeAreaView>
